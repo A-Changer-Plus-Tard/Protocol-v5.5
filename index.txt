@@ -16,6 +16,7 @@
             background-image: radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.15) 0px, transparent 50%), radial-gradient(at 100% 0%, rgba(20, 184, 166, 0.15) 0px, transparent 50%);
             background-attachment: fixed;
             -webkit-font-smoothing: antialiased;
+            min-height: 100vh;
         }
         h1, h2, h3, h4, .font-heading { font-family: 'Space Grotesk', sans-serif; }
         .font-code { font-family: 'Fira Code', monospace; }
@@ -26,16 +27,17 @@
         .glass-card {
             background: rgba(15, 23, 42, 0.85);
             backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.08);
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
         }
 
         /* Chart & Protocol Heights */
         .chart-container { position: relative; width: 100%; height: 250px; }
-        .protocol-card-container { perspective: 1000px; height: 340px; cursor: pointer; } 
+        .protocol-card-container { perspective: 1000px; height: 380px; cursor: pointer; } 
         @media (min-width: 768px) { 
             .chart-container { height: 350px; } 
-            .protocol-card-container { height: 400px; } 
+            .protocol-card-container { height: 420px; } 
         }
 
         /* Flip Logic */
@@ -54,10 +56,10 @@
         .code-display { background: #0b1120; border: 1px solid #1e293b; border-radius: 6px; padding: 10px; font-size: 0.65rem; color: #a5b4fc; overflow-x: auto; max-height: 140px; white-space: pre-wrap; }
 
         /* Buttons */
-        .ai-button-sm { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #a5b4fc; padding: 8px 12px; border-radius: 6px; font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; transition: all 0.2s; display: inline-flex; align-items: center; justify-content: center; gap: 6px; width: 100%; }
+        .ai-button-sm { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #a5b4fc; padding: 8px 12px; border-radius: 6px; font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; transition: all 0.2s; display: inline-flex; align-items: center; justify-content: center; gap: 6px; width: 100%; cursor: pointer; }
         .ai-button-sm:hover { background: rgba(255,255,255,0.1); color: white; border-color: #a5b4fc; }
 
-        .ai-button-primary { background: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%); background-size: 200% 200%; animation: gradient-xy 3s ease infinite; color: white; padding: 10px 20px; border-radius: 10px; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); display: inline-flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 4px 15px rgba(168, 85, 247, 0.4); border: 1px solid rgba(255, 255, 255, 0.1); position: relative; overflow: hidden; z-index: 10; }
+        .ai-button-primary { background: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%); background-size: 200% 200%; animation: gradient-xy 3s ease infinite; color: white; padding: 10px 20px; border-radius: 10px; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); display: inline-flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 4px 15px rgba(168, 85, 247, 0.4); border: 1px solid rgba(255, 255, 255, 0.1); position: relative; overflow: hidden; z-index: 10; cursor: pointer; }
         .ai-button-primary:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 25px rgba(168, 85, 247, 0.6); border-color: rgba(255, 255, 255, 0.3); }
         .ai-button-primary::after { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: linear-gradient(transparent, rgba(255,255,255,0.2), transparent); transform: rotate(45deg); animation: shine 3s infinite; pointer-events: none; }
 
@@ -118,6 +120,7 @@
 
         <!-- 3. SOLVENCY & SCHEDULE -->
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-16">
+            <!-- Left: Scenario C -->
             <div class="lg:col-span-7 glass-card rounded-2xl p-6 relative overflow-hidden">
                 <div class="absolute top-0 right-0 w-32 h-32 bg-teal-500/10 rounded-full blur-3xl"></div>
                 <div class="inline-block px-2 py-1 mb-3 bg-teal-500/10 text-teal-300 rounded text-[10px] font-bold uppercase tracking-wider">Scenario C</div>
@@ -132,6 +135,8 @@
                     <div class="flex justify-between pt-1"><span class="text-teal-400 font-bold">Total Liquidity Pool:</span> <span class="font-mono text-teal-400 font-bold">$32,000,000</span></div>
                 </div>
             </div>
+
+            <!-- Right: Schedule Structure -->
             <div class="lg:col-span-5 glass-card rounded-2xl p-6 flex flex-col justify-center">
                 <h3 class="text-lg font-bold text-white mb-6">The Schedule Structure</h3>
                 <div class="space-y-6 relative pl-6 border-l border-slate-700 ml-2">
@@ -179,12 +184,17 @@
                 <div class="flex justify-center items-center gap-2 mt-2"><span class="animate-bounce text-xl">👆</span><p class="text-indigo-400 text-xs uppercase font-bold tracking-widest bg-indigo-500/10 px-3 py-1 rounded-full border border-indigo-500/30">Tap Card to Flip & Verify</p></div>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <!-- Protocols P1-P6 -->
+                <!-- P1 -->
                 <div class="protocol-card-container" onclick="flipCard(this)"><div class="protocol-card-inner"><div class="protocol-front glass-card p-6 border-t-4 border-t-teal-500 flex flex-col"><div class="flex justify-between items-start mb-3"><span class="text-3xl">🛡️</span><span class="text-xs font-bold text-teal-500 uppercase bg-teal-500/10 px-2 py-1 rounded">Protocol 01</span></div><h3 class="text-lg font-bold text-white mb-2">Oracle Price Gate</h3><p class="text-slate-300 text-sm leading-relaxed mb-4 flex-grow"><strong>Standard Operation:</strong> Vesting only occurs if the market price stays above the listing price of <strong>$0.05</strong>. Smart contracts use Chainlink Oracles to verify price before any block release.</p><div class="insight-box insight-teal"><p class="text-xs uppercase font-bold text-teal-400 mb-1">Strategic Insight</p><p class="text-sm text-slate-300 italic">"Prevents value extraction. We cannot 'cash out' unless the public investor is in profit."</p></div></div><div class="protocol-back"><div><h4 class="text-sm font-bold text-teal-400 uppercase mb-2">Solidity Logic</h4><div class="code-display font-code" id="code-p1">modifier checkPrice() { uint256 price = oracle.latestAnswer(); require(price >= 500, "Wait for $0.05"); _; } if(now > tge + 1825 days) enableBurn();</div></div><button onclick="event.stopPropagation(); auditCode('Oracle Price Gate', document.getElementById('code-p1').innerText)" class="ai-button-sm">✨ AI Audit</button></div></div></div>
+                <!-- P2 -->
                 <div class="protocol-card-container" onclick="flipCard(this)"><div class="protocol-card-inner"><div class="protocol-front glass-card p-6 border-t-4 border-t-blue-500 flex flex-col"><div class="flex justify-between items-start mb-3"><span class="text-3xl">⛏️</span><span class="text-xs font-bold text-blue-500 uppercase bg-blue-500/10 px-2 py-1 rounded">Protocol 02</span></div><h3 class="text-lg font-bold text-white mb-2">Mining Emission Cap</h3><p class="text-slate-300 text-sm leading-relaxed mb-4 flex-grow"><strong>Inflation Control:</strong> Prevents miners from flooding the market. Emissions are strictly capped at <strong>20% of daily volume</strong> to ensure sustainability and support price stability.</p><div class="insight-box insight-blue"><p class="text-xs uppercase font-bold text-blue-400 mb-1">Strategic Insight</p><p class="text-sm text-slate-300 italic">"Prevents 'Hyper-Inflation'. Supply can never mathematically overwhelm demand."</p></div></div><div class="protocol-back"><div><h4 class="text-sm font-bold text-blue-400 uppercase mb-2">Solidity Logic</h4><div class="code-display font-code" id="code-p2">function _mintMinerReward(address to) internal { uint256 vol = oracle.get24hVolume(); uint256 cap = vol * 20 / 100; require(dailyMint + amount <= cap); _mint(to, amount); }</div></div><button onclick="event.stopPropagation(); auditCode('Mining Cap', document.getElementById('code-p2').innerText)" class="ai-button-sm">✨ AI Audit</button></div></div></div>
+                <!-- P3 -->
                 <div class="protocol-card-container" onclick="flipCard(this)"><div class="protocol-card-inner"><div class="protocol-front glass-card p-6 border-t-4 border-t-red-500 flex flex-col"><div class="flex justify-between items-start mb-3"><span class="text-3xl">🛑</span><span class="text-xs font-bold text-red-500 uppercase bg-red-500/10 px-2 py-1 rounded">Protocol 03</span></div><h3 class="text-lg font-bold text-white mb-2">Emergency Brake</h3><p class="text-slate-300 text-sm leading-relaxed mb-4 flex-grow"><strong>Crisis Management:</strong> If price falls below the survival threshold of <strong>$0.02</strong>, all vesting contracts pause immediately. This protects the liquidity pool from being drained during severe bear markets.</p><div class="insight-box insight-red"><p class="text-xs uppercase font-bold text-red-400 mb-1">Strategic Insight</p><p class="text-sm text-slate-300 italic">"Protects Liquidity Pool from being drained during a 'Black Swan' event."</p></div></div><div class="protocol-back"><div><h4 class="text-sm font-bold text-red-400 uppercase mb-2">Solidity Logic</h4><div class="code-display font-code" id="code-p3">function _beforeTransfer() internal view { uint price = oracle.latestAnswer(); if (price < 200) revert("Price < $0.02. Protected."); }</div></div><button onclick="event.stopPropagation(); auditCode('Emergency Brake', document.getElementById('code-p3').innerText)" class="ai-button-sm">✨ AI Audit</button></div></div></div>
+                <!-- P4 -->
                 <div class="protocol-card-container" onclick="flipCard(this)"><div class="protocol-card-inner"><div class="protocol-front glass-card p-6 border-t-4 border-t-indigo-500 flex flex-col"><div class="flex justify-between items-start mb-3"><span class="text-3xl">💧</span><span class="text-xs font-bold text-indigo-500 uppercase bg-indigo-500/10 px-2 py-1 rounded">Protocol 04</span></div><h3 class="text-lg font-bold text-white mb-2">Volume Pegging</h3><p class="text-slate-300 text-sm leading-relaxed mb-4 flex-grow"><strong>Dynamic Recovery:</strong> If the $0.05 target is missed but price is > $0.02, tokens release via a dynamic drip capped at <strong>2% of the 24h trading volume</strong>. This allows exits with zero price impact.</p><div class="insight-box insight-indigo"><p class="text-xs uppercase font-bold text-indigo-400 mb-1">Strategic Insight</p><p class="text-sm text-slate-300 italic">"Allows 'Soft Exits'. Large holders can exit without crashing the price."</p></div></div><div class="protocol-back"><div><h4 class="text-sm font-bold text-indigo-400 uppercase mb-2">Solidity Logic</h4><div class="code-display font-code" id="code-p4">function getSellLimit() public view returns (uint) { if (price < target) return oracle.get24hVolume() * 2 / 100; return type(uint256).max; }</div></div><button onclick="event.stopPropagation(); auditCode('Volume Pegging', document.getElementById('code-p4').innerText)" class="ai-button-sm">✨ AI Audit</button></div></div></div>
+                <!-- P5 -->
                 <div class="protocol-card-container" onclick="flipCard(this)"><div class="protocol-card-inner"><div class="protocol-front glass-card p-6 border-t-4 border-t-purple-500 flex flex-col"><div class="flex justify-between items-start mb-3"><span class="text-3xl">🏛️</span><span class="text-xs font-bold text-purple-500 uppercase bg-purple-500/10 px-2 py-1 rounded">Protocol 05</span></div><h3 class="text-lg font-bold text-white mb-2">DAO Consensus</h3><p class="text-slate-300 text-sm leading-relaxed mb-4 flex-grow"><strong>Governance Fallback:</strong> In prolonged stagnation, control of the Locked Treasury reverts to the community. Token holders vote to either burn the remaining supply or redeploy it for marketing to reignite growth.</p><div class="insight-box insight-purple"><p class="text-xs uppercase font-bold text-purple-400 mb-1">Strategic Insight</p><p class="text-sm text-slate-300 italic">"Eliminates 'Rug Pull' risk. Community inherits protocol if team fails."</p></div></div><div class="protocol-back"><div><h4 class="text-sm font-bold text-purple-400 uppercase mb-2">Solidity Logic</h4><div class="code-display font-code" id="code-p5">if (stagnation > 180 days) { admin = daoAddress; emit GovernanceShift(daoAddress); }</div></div><button onclick="event.stopPropagation(); auditCode('DAO Consensus', document.getElementById('code-p5').innerText)" class="ai-button-sm">✨ AI Audit</button></div></div></div>
+                <!-- P6 -->
                 <div class="protocol-card-container" onclick="flipCard(this)"><div class="protocol-card-inner"><div class="protocol-front glass-card p-6 border-t-4 border-t-orange-500 flex flex-col"><div class="flex justify-between items-start mb-3"><span class="text-3xl">🔥</span><span class="text-xs font-bold text-orange-500 uppercase bg-orange-500/10 px-2 py-1 rounded">Protocol 06</span></div><h3 class="text-lg font-bold text-white mb-2">DAO Consensus Ultimatum</h3><p class="text-slate-300 text-sm leading-relaxed mb-4 flex-grow"><strong>The "Value Burn":</strong> If the target price ($0.05) is not met by Month 36, the DAO automatically triggers the Ultimatum: all unvested Bonus & Team tokens are permanently burned. This creates an instant supply shock.</p><div class="insight-box insight-orange"><p class="text-xs uppercase font-bold text-orange-400 mb-1">Strategic Insight</p><p class="text-sm text-slate-300 italic">"The ultimate accountability. We succeed together, or the team pays the price."</p></div></div><div class="protocol-back"><div><h4 class="text-sm font-bold text-orange-400 uppercase mb-2">Solidity Logic</h4><div class="code-display font-code" id="code-p6">function triggerUltimatum() external { if (block.timestamp > tge + 1825 days && price < 500) executeDAOAction(); }</div></div><button onclick="event.stopPropagation(); auditCode('DAO Ultimatum', document.getElementById('code-p6').innerText)" class="ai-button-sm">✨ AI Audit</button></div></div></div>
             </div>
         </div>
@@ -269,9 +279,8 @@
         const teamData = [0, 0, 0, 0, 0, 50, 100, 100, 100]; // Solid Yellow
         
         // Bonus: 12m Lock, 36m Vest. Ends at 48m.
-        // Rate: ~2.77% per mo.
-        // M18 (6m)=17, M24 (12m)=33, M30 (18m)=50, M36 (24m)=67, M42 (30m)=83, M48 (36m)=100
-        const bonusData = [0, 0, 0, 17, 33, 50, 67, 83, 100]; 
+        // TGE(0)=0, 6=0, 12=0 (lock ends), 18=16, 24=33, 30=50, 36=67, 42=83, 48=100
+        const bonusData = [0, 0, 0, 17, 33, 50, 67, 83, 100]; // Dashed Orange
 
         // X1/Tap: 24m Lock, 24m Vest. Start m24, End m48.
         const x1Data = [0, 0, 0, 0, 0, 25, 50, 75, 100]; // Blue
